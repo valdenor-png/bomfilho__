@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #FBF8F2; color: #1F2421; font-family: "DM Sans", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; text-wrap: pretty; }
+a { color: #14532D; text-decoration: none; }
+a:hover { color: #E8722B; }
+</style>
+</helmet>
+
+<div style="max-width: 100%; overflow-x: hidden">
+
+  <header style="position: sticky; top: 0; z-index: 20; background: rgba(251,248,242,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid #E7E1D5">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 14px 20px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px">
+      <a href="#inicio" style="display: flex; align-items: center; gap: 10px">
+        <img src="uploads/pasted-1785443645343-0.png" alt="Bomfilho Supermercado" style="width: 44px; height: 44px; border-radius: 12px; object-fit: cover; display: block" />
+        <div style="display: flex; flex-direction: column; line-height: 1.05">
+          <span style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.01em; color: #14532D">Bomfilho</span>
+          <span style="font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A8078; font-weight: 500">Supermercado</span>
+        </div>
+      </a>
+      <nav style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; font-size: 15px; font-weight: 500">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#pedido">Fazer pedido</a>
+        <a href="#avaliacoes">Avaliações</a>
+        <a href="#contato">Contato</a>
+        <a href="tel:+559137219780" style="background: #E8722B; color: #fff; padding: 10px 18px; border-radius: 999px; font-weight: 700" style-hover="background: #D0611D; color: #fff">(91) 3721-9780</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="inicio" style="max-width: 1180px; margin: 0 auto; padding: 56px 20px 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: center">
+    <div>
+      <sc-if value="{{ mostrarAvisoAberto }}" hint-placeholder-val="{{ true }}">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: #E8F1E8; color: #14532D; padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; margin-bottom: 22px">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #2E9E52"></span>
+          Aberto agora · fecha às 19h
+        </div>
+      </sc-if>
+      <h1 style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: clamp(34px, 6vw, 60px); line-height: 1.04; letter-spacing: -0.025em; margin: 0 0 20px; color: #14532D">
+        Variedade e praticidade<br />para o seu dia a dia.
+      </h1>
+      <p style="font-size: clamp(16px, 2.2vw, 19px); line-height: 1.6; color: #4A524A; margin: 0 0 32px; max-width: 46ch">
+        O supermercado do bairro Saudade II, em Castanhal. Escreva sua lista de compras aqui no site, envie pelo WhatsApp e a gente separa tudo para entrega ou retirada.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <a href="#pedido" style="background: #14532D; color: #FBF8F2; padding: 15px 26px; border-radius: 999px; font-weight: 700; font-size: 16px" style-hover="background: #0E3D21; color: #FBF8F2">Montar minha lista</a>
+        <a href="#contato" style="border: 1.5px solid #C9D2C6; padding: 15px 26px; border-radius: 999px; font-weight: 700; font-size: 16px; color: #14532D" style-hover="border-color: #E8722B; color: #E8722B">Veja como chegar</a>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 34px; font-size: 14px; color: #4A524A">
+        <span style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 26px; color: #E8722B">4,1</span>
+        <span style="color: #E8722B; letter-spacing: 2px; font-size: 15px">★★★★☆</span>
+        <span>71 avaliações no Google</span>
+      </div>
+    </div>
+    <div style="position: relative; background: #14532D; border-radius: 28px; padding: 28px 24px 56px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+        <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #9DB29C; font-weight: 700">Sua lista</span>
+        <span style="font-size: 12.5px; color: #A8C0A9">6 itens</span>
+      </div>
+      <div style="background: #FBF8F2; border-radius: 18px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; color: #1F2421"><span style="width: 20px; height: 20px; border-radius: 6px; background: #2E9E52; color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 700">✓</span>2 kg de frango</div>
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; color: #1F2421"><span style="width: 20px; height: 20px; border-radius: 6px; background: #2E9E52; color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 700">✓</span>1 pacote de café 250 g</div>
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; color: #1F2421"><span style="width: 20px; height: 20px; border-radius: 6px; background: #2E9E52; color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 700">✓</span>5 tomates maduros</div>
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; color: #4A524A"><span style="width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid #D5CFC2; box-sizing: border-box"></span>2 caixas de leite</div>
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; color: #4A524A"><span style="width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid #D5CFC2; box-sizing: border-box"></span>1 sabão em pó 1 kg</div>
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; color: #4A524A"><span style="width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid #D5CFC2; box-sizing: border-box"></span>pão francês</div>
+      </div>
+      <div style="align-self: flex-end; max-width: 84%; background: #E8722B; color: #fff; border-radius: 16px 16px 4px 16px; padding: 14px 18px; font-size: 15px; line-height: 1.5; box-shadow: 0 12px 30px rgba(0,0,0,0.18)">
+        Lista recebida! Já estamos separando — em instantes mando o valor e a chave Pix. 🛒
+      </div>
+      <span style="position: absolute; left: 24px; bottom: 22px; font-size: 12.5px; color: #A8C0A9">Enviado no WhatsApp · (91) 99965-2790</span>
+    </div>
+  </section>
+
+  <section id="sobre" style="background: #14532D; color: #EFEFE8">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 72px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px 56px; align-items: start">
+      <div>
+        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #F0A776; font-weight: 700">Sobre nós</span>
+        <h2 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 40px); line-height: 1.12; letter-spacing: -0.02em; margin: 14px 0 0">Um mercado de bairro, com jeito de vizinho.</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 18px; font-size: 17px; line-height: 1.65; color: #CFD8CD">
+        <p style="margin: 0">O Bomfilho faz parte da rotina de quem mora na Saudade II. Ao longo dos anos, virou ponto de referência na Alameda 7 de Setembro: a compra grande do mês, o item que faltou no almoço, o pão da tarde.</p>
+        <p style="margin: 0">São mais de mil produtos — do hortifruti aos itens de limpeza — para que ninguém precise sair do bairro para resolver a lista de compras. Praticidade perto de casa, com o cuidado de um negócio local.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="produtos" style="max-width: 1180px; margin: 0 auto; padding: 76px 20px 60px">
+    <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #E8722B; font-weight: 700">Destaques</span>
+    <h2 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 40px); line-height: 1.12; letter-spacing: -0.02em; margin: 14px 0 40px; color: #14532D; max-width: 22ch">Por que os clientes voltam</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+      <div style="background: #fff; border: 1px solid #E7E1D5; border-radius: 20px; padding: 30px 26px" style-hover="border-color: #14532D">
+        <div style="width: 46px; height: 46px; border-radius: 14px; background: #E8F1E8; display: grid; place-items: center; margin-bottom: 20px">
+          <div style="width: 18px; height: 18px; border-radius: 50%; background: #2E9E52"></div>
+        </div>
+        <h3 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; margin: 0 0 10px; color: #14532D">Mais de 1.000 produtos</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: #4A524A">Hortifruti, mercearia, frios, bebidas, limpeza e higiene. Marcas conhecidas e opções mais econômicas no mesmo corredor.</p>
+      </div>
+      <div style="background: #fff; border: 1px solid #E7E1D5; border-radius: 20px; padding: 30px 26px" style-hover="border-color: #14532D">
+        <div style="width: 46px; height: 46px; border-radius: 14px; background: #FBEADF; display: grid; place-items: center; margin-bottom: 20px">
+          <div style="width: 18px; height: 18px; background: #E8722B; border-radius: 4px"></div>
+        </div>
+        <h3 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; margin: 0 0 10px; color: #14532D">Pedido pela lista</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: #4A524A">Você escreve a lista como faria em casa, envia pelo WhatsApp em um toque e a nossa equipe separa tudo.</p>
+      </div>
+      <div style="background: #fff; border: 1px solid #E7E1D5; border-radius: 20px; padding: 30px 26px" style-hover="border-color: #14532D">
+        <div style="width: 46px; height: 46px; border-radius: 14px; background: #E8F1E8; display: grid; place-items: center; margin-bottom: 20px">
+          <div style="width: 16px; height: 16px; background: #14532D; transform: rotate(45deg)"></div>
+        </div>
+        <h3 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; margin: 0 0 10px; color: #14532D">Fácil de chegar</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: #4A524A">Na Alameda 7 de Setembro, 70, em plena Saudade II. A pé, de bike ou de carro, você chega em minutos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pedido" style="background: #F3EFE4; border-top: 1px solid #E7E1D5">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 76px 20px">
+      <div style="max-width: 620px; margin-bottom: 36px">
+        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #E8722B; font-weight: 700">Fazer pedido</span>
+        <h2 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 40px); line-height: 1.12; letter-spacing: -0.02em; margin: 14px 0 12px; color: #14532D">Monte sua lista de compras</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A524A">Escreva um item por linha, preencha seus dados e envie. A lista chega prontinha no nosso WhatsApp e a conversa continua por lá.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; align-items: start">
+
+        <div style="background: #fff; border: 1px solid #E7E1D5; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+            <span style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 19px; color: #14532D">1. Sua lista</span>
+            <span style="font-size: 13px; color: #9AA098">{{ contagemLista }}</span>
+          </div>
+          <textarea value="{{ lista }}" onChange="{{ setLista }}" rows="12" placeholder="2 kg de frango&#10;1 pacote de café 250g&#10;5 tomates maduros&#10;1 sabão em pó 1kg&#10;2 caixas de leite&#10;pão francês" style="width: 100%; box-sizing: border-box; padding: 16px; border: 1.5px solid #E0DACD; border-radius: 14px; background: #FDFCF9; font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 2; color: #1F2421; resize: vertical"></textarea>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px">
+            <sc-for list="{{ atalhos }}" as="a" hint-placeholder-count="6">
+              <button type="button" onClick="{{ a.adicionar }}" style="border: 1.5px solid #E0DACD; background: #fff; color: #4A524A; padding: 8px 13px; border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer" style-hover="border-color: #14532D; color: #14532D">+ {{ a.nome }}</button>
+            </sc-for>
+          </div>
+          <p style="margin: 0; font-size: 13px; line-height: 1.55; color: #7A8078">Quanto mais detalhe (marca, tamanho, quantidade), mais rápido a separação. Se algum item faltar, avisamos na conversa e sugerimos outro.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 20px">
+          <div style="background: #fff; border: 1px solid #E7E1D5; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 14px">
+            <span style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 19px; color: #14532D">2. Seus dados</span>
+            <input value="{{ nome }}" onChange="{{ setNome }}" placeholder="Seu nome" style="width: 100%; box-sizing: border-box; padding: 14px 16px; border: 1.5px solid #E0DACD; border-radius: 12px; background: #FDFCF9; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #1F2421" />
+            <input value="{{ telefone }}" onChange="{{ setTelefone }}" placeholder="Seu telefone / WhatsApp" style="width: 100%; box-sizing: border-box; padding: 14px 16px; border: 1.5px solid #E0DACD; border-radius: 12px; background: #FDFCF9; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #1F2421" />
+            <div style="display: flex; gap: 8px">
+              <button type="button" onClick="{{ escolherEntrega }}" style="flex: 1; padding: 13px 12px; border-radius: 12px; border: 1.5px solid {{ bordaEntrega }}; background: {{ fundoEntrega }}; color: {{ corEntrega }}; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14.5px; cursor: pointer">Entrega</button>
+              <button type="button" onClick="{{ escolherRetirada }}" style="flex: 1; padding: 13px 12px; border-radius: 12px; border: 1.5px solid {{ bordaRetirada }}; background: {{ fundoRetirada }}; color: {{ corRetirada }}; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14.5px; cursor: pointer">Retirar na loja</button>
+            </div>
+            <sc-if value="{{ ehEntrega }}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; flex-direction: column; gap: 10px">
+                <input value="{{ endereco }}" onChange="{{ setEndereco }}" placeholder="Endereço de entrega (rua e número)" style="width: 100%; box-sizing: border-box; padding: 14px 16px; border: 1.5px solid #E0DACD; border-radius: 12px; background: #FDFCF9; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #1F2421" />
+                <input value="{{ complemento }}" onChange="{{ setComplemento }}" placeholder="Complemento e ponto de referência" style="width: 100%; box-sizing: border-box; padding: 14px 16px; border: 1.5px solid #E0DACD; border-radius: 12px; background: #FDFCF9; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #1F2421" />
+                <input value="{{ bairro }}" onChange="{{ setBairro }}" placeholder="Bairro" style="width: 100%; box-sizing: border-box; padding: 14px 16px; border: 1.5px solid #E0DACD; border-radius: 12px; background: #FDFCF9; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #1F2421" />
+                <span style="font-size: 12.5px; color: #7A8078; line-height: 1.5">A taxa de entrega é combinada no WhatsApp, conforme o seu bairro.</span>
+              </div>
+            </sc-if>
+            <textarea value="{{ obs }}" onChange="{{ setObs }}" placeholder="Observações (ex: banana bem verde, pode trocar a marca se faltar)" rows="2" style="width: 100%; box-sizing: border-box; padding: 14px 16px; border: 1.5px solid #E0DACD; border-radius: 12px; background: #FDFCF9; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #1F2421; resize: vertical"></textarea>
+          </div>
+
+          <div style="background: #fff; border: 1px solid #E7E1D5; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 14px">
+            <span style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 19px; color: #14532D">3. Pagamento em Pix</span>
+            <div style="display: flex; gap: 12px; background: #E8F1E8; border: 1px solid #BFD6C2; border-radius: 14px; padding: 14px 16px">
+              <div style="flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%; background: #14532D; color: #fff; display: grid; place-items: center; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 14px">✓</div>
+              <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #1F3A26">Aceitamos <strong>somente Pix</strong>. Depois de separar o pedido, enviamos o valor exato e a chave no WhatsApp — e é <strong>obrigatório mandar o comprovante do Pix na mesma conversa</strong> para liberarmos a entrega ou a retirada.</p>
+            </div>
+            <sc-if value="{{ podeEnviar }}" hint-placeholder-val="{{ true }}">
+              <a href="{{ linkWhatsapp }}" target="_blank" rel="noopener" style="background: #E8722B; color: #fff; text-align: center; padding: 16px 20px; border-radius: 999px; font-weight: 700; font-size: 16px" style-hover="background: #D0611D; color: #fff">Enviar lista no WhatsApp</a>
+            </sc-if>
+            <sc-if value="{{ naoPodeEnviar }}" hint-placeholder-val="{{ false }}">
+              <div style="background: #E0DACD; color: #7A8078; text-align: center; padding: 16px 20px; border-radius: 999px; font-weight: 700; font-size: 15px; cursor: not-allowed">Escreva pelo menos um item na lista</div>
+            </sc-if>
+            <span style="text-align: center; font-size: 12.5px; color: #7A8078">Vai para (91) 99965-2790 · resposta em horário de loja</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ podeEnviar }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 12px 16px; background: rgba(20,83,45,0.97); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between; gap: 16px">
+      <span style="font-size: 14px; color: #EFEFE8; font-weight: 600">{{ contagemLista }}</span>
+      <a href="{{ linkWhatsapp }}" target="_blank" rel="noopener" style="background: #E8722B; color: #fff; padding: 13px 22px; border-radius: 999px; font-weight: 700; font-size: 15px; white-space: nowrap" style-hover="background: #D0611D; color: #fff">Enviar no WhatsApp</a>
+    </div>
+  </sc-if>
+
+  <section id="avaliacoes" style="background: #FBF8F2; border-top: 1px solid #E7E1D5; border-bottom: 1px solid #E7E1D5">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 76px 20px">
+      <div style="display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 40px">
+        <div>
+          <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #E8722B; font-weight: 700">Avaliações</span>
+          <h2 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 40px); line-height: 1.12; letter-spacing: -0.02em; margin: 14px 0 0; color: #14532D">O que dizem por aqui</h2>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #E7E1D5; border-radius: 999px; padding: 10px 18px">
+          <span style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; color: #14532D">4,1</span>
+          <span style="color: #E8722B; letter-spacing: 2px">★★★★☆</span>
+          <span style="font-size: 14px; color: #4A524A">71 avaliações</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px">
+        <div style="background: #fff; border: 1px solid #E7E1D5; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+          <span style="color: #E8722B; letter-spacing: 2px">★★★★★</span>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #333A33">Encontro praticamente tudo da minha lista sem precisar ir ao centro. A variedade impressiona para um mercado de bairro.</p>
+          <span style="font-size: 13px; color: #7A8078; font-weight: 600">Cliente do bairro · Google</span>
+        </div>
+        <div style="background: #fff; border: 1px solid #E7E1D5; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+          <span style="color: #E8722B; letter-spacing: 2px">★★★★☆</span>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #333A33">Boas opções de compra e preços que ajudam no fim do mês. O atendimento no caixa é sempre atencioso.</p>
+          <span style="font-size: 13px; color: #7A8078; font-weight: 600">Moradora da Saudade II · Google</span>
+        </div>
+        <sc-if value="{{ mostrarSugestoes }}" hint-placeholder-val="{{ true }}">
+          <div style="background: #fff; border: 1px solid #E7E1D5; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+            <span style="color: #E8722B; letter-spacing: 2px">★★★☆☆</span>
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #333A33">Gosto do mix de produtos, mas a estrutura poderia ser mais ampla e organizada nos horários de pico. Estamos ouvindo e melhorando.</p>
+            <span style="font-size: 13px; color: #7A8078; font-weight: 600">Sugestão de cliente · Google</span>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 1180px; margin: 0 auto; padding: 76px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px 56px; align-items: start">
+    <div>
+      <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #E8722B; font-weight: 700">Horário</span>
+      <h2 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 40px); line-height: 1.12; letter-spacing: -0.02em; margin: 14px 0 16px; color: #14532D">Estamos abertos<br />todos os dias</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A524A; max-width: 34ch">Listas enviadas pelo site são separadas dentro do horário de loja. Em datas comemorativas o horário pode mudar — ligue para (91) 3721-9780.</p>
+    </div>
+    <div style="background: #fff; border: 1px solid #E7E1D5; border-radius: 20px; overflow: hidden">
+      <div style="display: flex; justify-content: space-between; gap: 16px; padding: 16px 24px; border-bottom: 1px solid #F0EBDF; font-size: 16px"><span style="font-weight: 600">Segunda a sexta</span><span style="color: #4A524A">07h — 19h</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 16px; padding: 16px 24px; border-bottom: 1px solid #F0EBDF; font-size: 16px"><span style="font-weight: 600">Sábado</span><span style="color: #4A524A">07h — 19h</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 16px; padding: 16px 24px; border-bottom: 1px solid #F0EBDF; font-size: 16px"><span style="font-weight: 600">Domingo</span><span style="color: #4A524A">08h — 13h</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 16px; padding: 16px 24px; font-size: 16px; background: #E8F1E8"><span style="font-weight: 700; color: #14532D">Hoje</span><span style="font-weight: 700; color: #14532D">Aberto · fecha às 19h</span></div>
+    </div>
+  </section>
+
+  <section id="contato" style="background: #14532D; color: #EFEFE8">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 76px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px 56px; align-items: start">
+      <div>
+        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #F0A776; font-weight: 700">Localização e contato</span>
+        <h2 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 40px); line-height: 1.12; letter-spacing: -0.02em; margin: 14px 0 32px">Venha nos visitar</h2>
+        <div style="display: flex; flex-direction: column; gap: 24px">
+          <div>
+            <div style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #9DB29C; font-weight: 700; margin-bottom: 6px">Endereço</div>
+            <div style="font-size: 18px; line-height: 1.55">Al. 7 de Setembro, 70 — Saudade II<br />Castanhal — PA, 68740-180</div>
+          </div>
+          <div>
+            <div style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #9DB29C; font-weight: 700; margin-bottom: 6px">Telefone da loja</div>
+            <a href="tel:+559137219780" style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 26px; color: #FBF8F2" style-hover="color: #F0A776">(91) 3721-9780</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #9DB29C; font-weight: 700; margin-bottom: 6px">WhatsApp de pedidos</div>
+            <a href="https://wa.me/5591999652790" target="_blank" rel="noopener" style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 26px; color: #FBF8F2" style-hover="color: #F0A776">(91) 99965-2790</a>
+          </div>
+          <a href="#pedido" style="align-self: start; background: #E8722B; color: #fff; padding: 15px 26px; border-radius: 999px; font-weight: 700; font-size: 16px" style-hover="background: #D0611D; color: #fff">Montar minha lista</a>
+        </div>
+      </div>
+      <sc-if value="{{ mostrarMapa }}" hint-placeholder-val="{{ true }}">
+        <div style="border-radius: 24px; overflow: hidden; border: 1px solid #2C6B45; background: repeating-linear-gradient(135deg, #1B5E34 0 12px, #1F6739 12px 24px); min-height: 340px; display: grid; place-items: center; padding: 24px; text-align: center">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #A8C0A9; letter-spacing: 0.06em">espaço reservado: mapa incorporado</span>
+            <span style="font-size: 14px; color: #CFD8CD">Al. 7 de Setembro, 70 — Saudade II, Castanhal — PA</span>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <footer style="background: #0E3D21; color: #B9C6B8">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 48px 20px 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px">
+          <img src="uploads/pasted-1785443645343-0.png" alt="Bomfilho Supermercado" style="width: 38px; height: 38px; border-radius: 10px; object-fit: cover; display: block" />
+          <span style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 18px; color: #FBF8F2">Bomfilho Supermercado</span>
+        </div>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.6">Variedade e praticidade para o bairro Saudade II, em Castanhal — PA.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; font-size: 14.5px">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7E9480; font-weight: 700; margin-bottom: 4px">Contato</span>
+        <a href="tel:+559137219780" style="color: #E7EEE6" style-hover="color: #F0A776">Loja: (91) 3721-9780</a>
+        <a href="https://wa.me/5591999652790" target="_blank" rel="noopener" style="color: #E7EEE6" style-hover="color: #F0A776">Pedidos: (91) 99965-2790</a>
+        <span>Al. 7 de Setembro, 70 — Saudade II</span>
+        <span>Castanhal — PA, 68740-180</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; font-size: 14.5px">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7E9480; font-weight: 700; margin-bottom: 4px">Redes sociais</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <a href="#inicio" style="border: 1px solid #2C6B45; border-radius: 999px; padding: 8px 16px; font-size: 13.5px; color: #E7EEE6" style-hover="border-color: #E8722B; color: #F0A776">Instagram</a>
+          <a href="#inicio" style="border: 1px solid #2C6B45; border-radius: 999px; padding: 8px 16px; font-size: 13.5px; color: #E7EEE6" style-hover="border-color: #E8722B; color: #F0A776">Facebook</a>
+          <a href="https://wa.me/5591999652790" target="_blank" rel="noopener" style="border: 1px solid #2C6B45; border-radius: 999px; padding: 8px 16px; font-size: 13.5px; color: #E7EEE6" style-hover="border-color: #E8722B; color: #F0A776">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1180px; margin: 0 auto; padding: 18px 20px 34px; border-top: 1px solid #1B5E34; font-size: 13px; color: #7E9480">© 2026 Bomfilho Supermercado. Todos os direitos reservados.</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mostrarAvisoAberto&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Conteúdo&quot;},&quot;mostrarSugestoes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Conteúdo&quot;},&quot;mostrarMapa&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Conteúdo&quot;}}">
+const ATALHOS = ["kg de", "pacote de", "caixa de", "garrafa de", "dúzia de", "unidade de"];
+const WHATS = "5591999652790";
+
+class Component extends DCLogic {
+  state = {
+    lista: "",
+    nome: "",
+    telefone: "",
+    endereco: "",
+    complemento: "",
+    bairro: "",
+    obs: "",
+    entrega: "entrega",
+  };
+
+  linhasLista() {
+    return this.state.lista
+      .split("\n")
+      .map((l) => l.trim())
+      .filter((l) => l.length > 0);
+  }
+
+  mensagem(linhas) {
+    const s = this.state;
+    const partes = ["*NOVO PEDIDO — Site Bomfilho*", "", "*Lista de compras*", linhas.map((l) => "• " + l).join("\n"), ""];
+    partes.push("*Cliente:* " + (s.nome || "(a informar)"));
+    partes.push("*Contato:* " + (s.telefone || "(a informar)"));
+    if (s.entrega === "entrega") {
+      partes.push("*Entrega em:* " + (s.endereco || "(endereço a informar)"));
+      partes.push("*Complemento/referência:* " + (s.complemento || "(a informar)"));
+      partes.push("*Bairro:* " + (s.bairro || "(a informar)"));
+      partes.push("*Taxa de entrega:* a combinar no WhatsApp");
+    } else {
+      partes.push("*Retirada na loja* — Al. 7 de Setembro, 70, Saudade II");
+    }
+    partes.push("*Pagamento:* Pix — envio o comprovante aqui na conversa");
+    if (s.obs) partes.push("*Observações:* " + s.obs);
+    partes.push("", "Podem confirmar a disponibilidade e o valor final? Fico no aguardo da chave Pix.");
+    return partes.join("\n");
+  }
+
+  renderVals() {
+    const s = this.state;
+    const linhas = this.linhasLista();
+    const sel = (cond) => ({
+      borda: cond ? "#14532D" : "#E0DACD",
+      fundo: cond ? "#E8F1E8" : "#FFFFFF",
+      cor: cond ? "#14532D" : "#4A524A",
+    });
+
+    return {
+      mostrarAvisoAberto: this.props.mostrarAvisoAberto ?? true,
+      mostrarSugestoes: this.props.mostrarSugestoes ?? true,
+      mostrarMapa: this.props.mostrarMapa ?? true,
+
+      lista: s.lista,
+      setLista: (e) => this.setState({ lista: e.target.value }),
+      contagemLista: linhas.length === 0 ? "nenhum item escrito" : linhas.length === 1 ? "1 item na lista" : linhas.length + " itens na lista",
+      atalhos: ATALHOS.map((a) => ({
+        nome: a,
+        adicionar: () => this.setState((st) => ({ lista: st.lista.replace(/\s+$/, "") + (st.lista.trim() ? "\n" : "") + a + " " })),
+      })),
+
+      nome: s.nome,
+      telefone: s.telefone,
+      endereco: s.endereco,
+      complemento: s.complemento,
+      bairro: s.bairro,
+      obs: s.obs,
+      setNome: (e) => this.setState({ nome: e.target.value }),
+      setTelefone: (e) => this.setState({ telefone: e.target.value }),
+      setEndereco: (e) => this.setState({ endereco: e.target.value }),
+      setComplemento: (e) => this.setState({ complemento: e.target.value }),
+      setBairro: (e) => this.setState({ bairro: e.target.value }),
+      setObs: (e) => this.setState({ obs: e.target.value }),
+
+      ehEntrega: s.entrega === "entrega",
+      escolherEntrega: () => this.setState({ entrega: "entrega" }),
+      escolherRetirada: () => this.setState({ entrega: "retirada" }),
+      bordaEntrega: sel(s.entrega === "entrega").borda,
+      fundoEntrega: sel(s.entrega === "entrega").fundo,
+      corEntrega: sel(s.entrega === "entrega").cor,
+      bordaRetirada: sel(s.entrega === "retirada").borda,
+      fundoRetirada: sel(s.entrega === "retirada").fundo,
+      corRetirada: sel(s.entrega === "retirada").cor,
+
+      podeEnviar: linhas.length > 0,
+      naoPodeEnviar: linhas.length === 0,
+      linkWhatsapp: "https://wa.me/" + WHATS + "?text=" + encodeURIComponent(this.mensagem(linhas)),
+    };
+  }
+}
+</script>
+</body>
+</html>
