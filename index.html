@@ -203,10 +203,27 @@ a:hover { color: #E8722B; }
           </div>
 
           <div style="background: #fff; border: 1px solid #E7E1D5; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 14px">
-            <span style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 19px; color: #14532D">3. Pagamento em Pix</span>
+            <span style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 19px; color: #14532D">3. Pagamento</span>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <sc-for list="{{ pagamentos }}" as="pg" hint-placeholder-count="3">
+                <button type="button" onClick="{{ pg.selecionar }}" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left; padding: 14px 16px; border-radius: 12px; border: 1.5px solid {{ pg.borda }}; background: {{ pg.fundo }}; font-family: 'DM Sans', sans-serif; cursor: pointer">
+                  <span style="display: flex; flex-direction: column; gap: 2px">
+                    <span style="font-weight: 700; font-size: 15px; color: #1F2421">{{ pg.nome }}</span>
+                    <span style="font-size: 12.5px; color: #7A8078">{{ pg.desc }}</span>
+                  </span>
+                  <span style="width: 20px; height: 20px; flex: 0 0 auto; border-radius: 50%; border: 1.5px solid {{ pg.bordaMarca }}; background: {{ pg.marca }}"></span>
+                </button>
+              </sc-for>
+            </div>
+            <sc-if value="{{ soPix }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; gap: 12px; background: #FBEADF; border: 1px solid #F3C9A8; border-radius: 14px; padding: 14px 16px">
+                <div style="flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%; background: #E8722B; color: #fff; display: grid; place-items: center; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 15px">!</div>
+                <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6B4326">{{ textoRestricao }}</p>
+              </div>
+            </sc-if>
             <div style="display: flex; gap: 12px; background: #E8F1E8; border: 1px solid #BFD6C2; border-radius: 14px; padding: 14px 16px">
               <div style="flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%; background: #14532D; color: #fff; display: grid; place-items: center; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 14px">✓</div>
-              <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #1F3A26">Aceitamos <strong>somente Pix</strong>. Depois de separar o pedido, enviamos o valor exato e a chave no WhatsApp — e é <strong>obrigatório mandar o comprovante do Pix na mesma conversa</strong> para liberarmos a entrega ou a retirada.</p>
+              <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #1F3A26">{{ textoPagamento }}</p>
             </div>
             <sc-if value="{{ podeEnviar }}" hint-placeholder-val="{{ true }}">
               <a href="{{ linkWhatsapp }}" target="_blank" rel="noopener" style="background: #E8722B; color: #fff; text-align: center; padding: 16px 20px; border-radius: 999px; font-weight: 700; font-size: 16px" style-hover="background: #D0611D; color: #fff">Enviar lista no WhatsApp</a>
@@ -368,6 +385,13 @@ const BAIRROS = [
   "Outro bairro",
 ];
 
+const BAIRRO_LOJA = "Saudade II";
+const PAGAMENTOS = [
+  { id: "pix", nome: "Pix", desc: "Enviamos a chave e o valor exato no WhatsApp" },
+  { id: "dinheiro", nome: "Dinheiro", desc: "Só na Saudade II ou na retirada · avise se precisa de troco" },
+  { id: "cartao", nome: "Cartão", desc: "Só na Saudade II ou na retirada · maquininha na entrega" },
+];
+
 const CHAVE = "bomfilho.pedido.v1";
 const CHAVE_FAV = "bomfilho.listaSempre.v1";
 
@@ -384,7 +408,17 @@ class Component extends DCLogic {
     entrega: "entrega",
     favorita: "",
     aviso: "",
+    pagamento: "pix",
   };
+
+  aceitaTodos() {
+    return this.state.entrega === "retirada" || this.bairroFinal() === BAIRRO_LOJA;
+  }
+
+  pagamentoAtivo() {
+    const p = this.state.pagamento;
+    return !this.aceitaTodos() && p !== "pix" ? "pix" : p;
+  }
 
   componentDidMount() {
     this.timer = setInterval(() => this.forceUpdate(), 60000);
@@ -477,7 +511,11 @@ class Component extends DCLogic {
     } else {
       partes.push("*Retirada na loja* — Al. 7 de Setembro, 70, Saudade II");
     }
-    partes.push("*Pagamento:* Pix — envio o comprovante aqui na conversa");
+    const pgAtivo = this.pagamentoAtivo();
+    const pg = PAGAMENTOS.find((x) => x.id === pgAtivo);
+    partes.push(
+      "*Pagamento:* " + (pg ? pg.nome : "Pix") + (pgAtivo === "pix" ? " — envio o comprovante aqui na conversa" : " — na entrega/retirada")
+    );
     if (s.obs) partes.push("*Observações:* " + s.obs);
     partes.push("", "Podem confirmar a disponibilidade e o valor final? Fico no aguardo da chave Pix.");
     return partes.join("\n");
@@ -487,6 +525,8 @@ class Component extends DCLogic {
     const s = this.state;
     const linhas = this.linhasLista();
     const st = this.status();
+    const todos = this.aceitaTodos();
+    const pgAtivo = this.pagamentoAtivo();
     const sel = (cond) => ({
       borda: cond ? "#14532D" : "#E0DACD",
       fundo: cond ? "#E8F1E8" : "#FFFFFF",
@@ -564,6 +604,29 @@ class Component extends DCLogic {
       bordaRetirada: sel(s.entrega === "retirada").borda,
       fundoRetirada: sel(s.entrega === "retirada").fundo,
       corRetirada: sel(s.entrega === "retirada").cor,
+
+      pagamentos: PAGAMENTOS.map((pg) => {
+        const bloqueado = pg.id !== "pix" && !todos;
+        const ativo = pgAtivo === pg.id;
+        return {
+          nome: pg.nome + (bloqueado ? " — indisponível" : ""),
+          desc: pg.desc,
+          borda: ativo ? "#14532D" : bloqueado ? "#EDE7DA" : "#E0DACD",
+          fundo: ativo ? "#E8F1E8" : bloqueado ? "#F7F4ED" : "#FFFFFF",
+          marca: ativo ? "#14532D" : "transparent",
+          bordaMarca: ativo ? "#14532D" : "#D5CFC2",
+          selecionar: () => (bloqueado ? null : this.set({ pagamento: pg.id })),
+        };
+      }),
+      soPix: !todos,
+      textoRestricao:
+        "Dinheiro e cartão valem só para entregas no bairro Saudade II ou para retirada na loja. Para os outros bairros, o pagamento é feito em Pix antes da saída da entrega.",
+      textoPagamento:
+        pgAtivo === "pix"
+          ? "No Pix, enviamos o valor exato e a chave no WhatsApp — e é obrigatório mandar o comprovante na mesma conversa para liberarmos a entrega ou a retirada."
+          : "Confirmamos o valor no WhatsApp e você paga em " +
+            (pgAtivo === "dinheiro" ? "dinheiro" : "cartão") +
+            " no momento da entrega ou da retirada.",
 
       podeEnviar: linhas.length > 0,
       naoPodeEnviar: linhas.length === 0,
