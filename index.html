@@ -44,6 +44,7 @@ a:hover { color: #E8722B; }
       <nav style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; font-size: 15px; font-weight: 500">
         <a href="#inicio">Início</a>
         <a href="#sobre">Sobre</a>
+        <a href="#departamentos">Departamentos</a>
         <a href="#pedido">Fazer pedido</a>
         <a href="#avaliacoes">Avaliações</a>
         <a href="#contato">Contato</a>
@@ -134,6 +135,28 @@ a:hover { color: #E8722B; }
         <h3 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; margin: 0 0 10px; color: #14532D">Fácil de chegar</h3>
         <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: #4A524A">Na Alameda 7 de Setembro, 70, em plena Saudade II. A pé, de bike ou de carro, você chega em minutos.</p>
       </div>
+    </div>
+  </section>
+
+  <section id="departamentos" style="max-width: 1180px; margin: 0 auto; padding: 16px 20px 76px">
+    <div style="display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 32px">
+      <div style="max-width: 34ch">
+        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #E8722B; font-weight: 700">Departamentos</span>
+        <h2 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 40px); line-height: 1.12; letter-spacing: -0.02em; margin: 14px 0 12px; color: #14532D">Tudo o que você encontra aqui</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A524A">Toque em um departamento para começar sua lista por ele.</p>
+      </div>
+      <span style="font-size: 14px; color: #7A8078; font-weight: 600">21 departamentos · mais de 1.000 produtos</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px">
+      <sc-for list="{{ departamentos }}" as="d" hint-placeholder-count="21">
+        <a href="#pedido" onClick="{{ d.escolher }}" style="background: #fff; border: 1px solid #E7E1D5; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 14px; cursor: pointer" style-hover="border-color: #14532D; background: #F7FAF6">
+          <span style="flex: 0 0 auto; width: 40px; height: 40px; border-radius: 12px; background: {{ d.fundoIcone }}; display: grid; place-items: center; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 15px; color: {{ d.corIcone }}">{{ d.sigla }}</span>
+          <span style="display: flex; flex-direction: column; gap: 3px">
+            <span style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; color: #1F2421; line-height: 1.2">{{ d.nome }}</span>
+            <span style="font-size: 12.5px; color: #7A8078; line-height: 1.4">{{ d.desc }}</span>
+          </span>
+        </a>
+      </sc-for>
     </div>
   </section>
 
@@ -392,6 +415,30 @@ const PAGAMENTOS = [
   { id: "cartao", nome: "Cartão", desc: "Só na Saudade II ou na retirada · maquininha na entrega" },
 ];
 
+const DEPARTAMENTOS = [
+  { nome: "Hortifruti", sigla: "HF", desc: "Frutas, verduras e legumes" },
+  { nome: "Mercearia", sigla: "MC", desc: "Secos e molhados do dia a dia" },
+  { nome: "Frios e fatiados", sigla: "FF", desc: "Presunto, queijo e embutidos" },
+  { nome: "Laticínios", sigla: "LT", desc: "Leite, queijo e iogurte" },
+  { nome: "Congelados", sigla: "CG", desc: "Polpas, empanados e sorvetes" },
+  { nome: "Bebidas em geral", sigla: "BB", desc: "Refrigerantes, sucos e energéticos" },
+  { nome: "Cervejas e adega", sigla: "CV", desc: "Cervejas geladas, vinhos e destilados" },
+  { nome: "Matinais", sigla: "MT", desc: "Café, cereais e achocolatado" },
+  { nome: "Doces e biscoitos", sigla: "DC", desc: "Guloseimas e bolachas" },
+  { nome: "Enlatados e conservas", sigla: "EC", desc: "Milho, sardinha e azeitona" },
+  { nome: "Temperos e condimentos", sigla: "TP", desc: "Sal, alho e temperos prontos" },
+  { nome: "Água mineral", sigla: "AG", desc: "Galão, fardo e garrafa" },
+  { nome: "Limpeza", sigla: "LP", desc: "Sabão, desinfetante e amaciante" },
+  { nome: "Higiene pessoal", sigla: "HG", desc: "Sabonete, creme dental e papel" },
+  { nome: "Perfumaria e beleza", sigla: "PF", desc: "Cabelo, pele e maquiagem" },
+  { nome: "Bebê e infantil", sigla: "BE", desc: "Fralda, lenço e papinha" },
+  { nome: "Pet shop", sigla: "PT", desc: "Cuidado e higiene dos animais" },
+  { nome: "Ração e acessórios", sigla: "RA", desc: "Cães, gatos e aves" },
+  { nome: "Bazar e utilidades", sigla: "BZ", desc: "Cozinha, casa e pilhas" },
+  { nome: "Descartáveis", sigla: "DP", desc: "Copos, marmitas e sacolas" },
+  { nome: "Papelaria", sigla: "PP", desc: "Caderno, caneta e material escolar" },
+];
+
 const CHAVE = "bomfilho.pedido.v1";
 const CHAVE_FAV = "bomfilho.listaSempre.v1";
 
@@ -559,6 +606,19 @@ class Component extends DCLogic {
       atalhos: ATALHOS.map((a) => ({
         nome: a,
         adicionar: () => this.set({ lista: s.lista.replace(/\s+$/, "") + (s.lista.trim() ? "\n" : "") + a + " " }),
+      })),
+
+      departamentos: DEPARTAMENTOS.map((d, i) => ({
+        nome: d.nome,
+        sigla: d.sigla,
+        desc: d.desc,
+        fundoIcone: i % 2 === 0 ? "#E8F1E8" : "#FBEADF",
+        corIcone: i % 2 === 0 ? "#14532D" : "#C2551A",
+        escolher: () => {
+          const cab = "— " + d.nome + " —";
+          if (s.lista.indexOf(cab) !== -1) return;
+          this.set({ lista: s.lista.replace(/\s+$/, "") + (s.lista.trim() ? "\n\n" : "") + cab + "\n" });
+        },
       })),
 
       temLista: linhas.length > 0,
